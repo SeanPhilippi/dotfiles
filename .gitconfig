@@ -3,13 +3,38 @@
 	email = s.philippi@rsitex.com
 [commit]
 	gpgsign = false
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+# [user]
+#	name = Sean Philippi
+#	email = sean.philippi@gmail.com
+[push]
+	default = matching
+[help]
+	autocorrect = 20
+[color "status"]
+	changed = green black bold
+[color "branch"]
+	changed = yellow black bold
+	meta = yellow black bold
+[core]
+	editor = vim
+	autocrlf = false
+	safecrlf = true
+[grep]
+	extendRegexp = true
+	lineNumber = true
 [alias]
 	co = checkout
-	br = branch
 	ci = commit
 	st = status
+	br = "!git --no-pager branch"
 	unstage = reset HEAD --
-	last = log -1 HEAD
+	last = "log -1 HEAD"
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
+[http]
+	postBuffer = 157286400
