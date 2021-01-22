@@ -1,10 +1,34 @@
 syntax on
 
+"make cursor thin for insert mode"
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+\ if v:insertmode == 'i' |
+\   silent execute '!echo -ne "\e[6 q"' | redraw! |
+\ elseif v:insertmode == 'r' |
+\   silent execute '!echo -ne "\e[4 q"' | redraw! |
+\ endif
+au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+
+set relativenumber
+"no highlight search, last term searched for won't stay highlighted
+set nohlsearch
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+"helps keep cursor centered, will scroll when 8 lines above bottom
+set scrolloff=8
+
+"will auto-source .vimrc in current folder if you have different .vimrcs for different projects
+set exrc
 set noerrorbells
 set smartindent
 set nowrap
+"search while typing search term
 set incsearch
-
+"gives error column
+set signcolumn=yes
 map <Down> <NOP>
 map <Up> <NOP>
 map <Left> <NOP>
@@ -13,16 +37,3 @@ imap jj <Esc>
 " on entering vim, assign caps lock to esc, undo upon exiting vim
 au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
-
-" Use the space key as our leader. Put this near the top of your vimrc
-" let mapleader = "\<Space>"
-
-" Split edit your vimrc. Type space, v, r in sequence to trigger
-" nmap <leader>vr :sp $MYVIMRC<cr>
-
-" Source (reload) your vimrc. Type space, s, o in sequence to trigger
-" nmap <leader>so :source $MYVIMRC<cr>
-
-" map w!! for writing when sudo permissions are required
-" cmap w!! %!sudo tee > /dev/null
-
