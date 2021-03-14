@@ -1,3 +1,10 @@
+"autostart plugins
+call plug#begin()
+"Plug 'preservim/NERDTree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+call plug#end()
+
 "syntax highlighting
 syntax on
 "show (partial) command in status line
