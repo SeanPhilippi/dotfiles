@@ -1,23 +1,21 @@
-"autostart plugins
 call plug#begin()
 "Plug 'preservim/NERDTree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 call plug#end()
-
 "syntax highlighting
 syntax on
 "show (partial) command in status line
 set showcmd
-    
+
 au BufRead,BufNewFile *.py set expandtab
 
 "make cursor thin for insert mode"
 if has("autocmd")
-   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-   au InsertEnter,InsertChange *
- \ if v:insertmode == 'i' |
- \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+\ if v:insertmode == 'i' |
+\   silent execute '!echo -ne "\e[6 q"' | redraw! |
 \ elseif v:insertmode == 'r' |
 \   silent execute '!echo -ne "\e[4 q"' | redraw! |
 \ endif
@@ -33,6 +31,8 @@ set expandtab
 set autoindent
 "make backspaces more powerful
 set backspace=indent,eol,start
+"allow copy/paste between terminals
+set clipboard=unnamed
 
 "helps keep cursor centered, will scroll when 8 lines above bottom
 set scrolloff=8
@@ -52,6 +52,9 @@ map <Up> <NOP>
 map <Left> <NOP>
 map <Right> <NOP>
 imap jj <Esc>
+"move highlighted text up/down with K and J
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 " on entering vim, assign caps lock to esc, undo upon exiting vim
 au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
