@@ -2,6 +2,8 @@ call plug#begin()
 "Plug 'preservim/NERDTree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-repeat'
 call plug#end()
 "syntax highlighting
 syntax on
