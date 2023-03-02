@@ -57,8 +57,30 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 parse_git_branch() {
- git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
+# ANSI color codes stored in variables
+RS="\[\033[0m\]"    # reset
+HC="\[\033[1m\]"    # hicolor
+UL="\[\033[4m\]"    # underline
+INV="\[\033[7m\]"   # inverse background and foreground
+FBLK="\[\033[30m\]" # foreground black
+FRED="\[\033[31m\]" # foreground red
+FGRN="\[\033[32m\]" # foreground green
+FYEL="\[\033[33m\]" # foreground yellow
+FBLE="\[\033[34m\]" # foreground blue
+FMAG="\[\033[35m\]" # foreground magenta
+FCYN="\[\033[36m\]" # foreground cyan
+FWHT="\[\033[37m\]" # foreground white
+BBLK="\[\033[40m\]" # background black
+BRED="\[\033[41m\]" # background red
+BGRN="\[\033[42m\]" # background green
+BYEL="\[\033[43m\]" # background yellow
+BBLE="\[\033[44m\]" # background blue
+BMAG="\[\033[45m\]" # background magenta
+BCYN="\[\033[46m\]" # background cyan
+BWHT="\[\033[47m\]" # background white
 
 if [ "$color_prompt" = yes ]; then
 	PS1='    \u@\[\033[00m\]:\[\033[01;34m\]\w\[\033[0;36m\]$(parse_git_branch)\[\033[00m\]> '
@@ -96,6 +118,13 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# personal aliases
+alias update='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo snap refresh'
+alias clean='python3 ./Development/py-projects/scripts/dir-cleaner/dir-cleaner.py'
+alias cleantd='python3 ./Development/py-projects/scripts/dir-cleaner/dir-cleaner.py -p TRANSMISSION_DWLDS_PATH'
+alias rename='python3 ./Development/py-projects/scripts/music-dir-renamer/music-dir-renamer.py'
+alias android-studio='cd && ./android-studio/bin/studio.sh'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -119,3 +148,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# for dir-cleaner.py
+export MUSIC_PATH=/home/kesto/Music
+export DOWNLOADS_PATH=/home/kesto/Downloads
+export TRANSMISSION_DWLDS_PATH=/home/kesto/Transmission-Downloads
+export TEST_PATH=/home/kesto/Test
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
