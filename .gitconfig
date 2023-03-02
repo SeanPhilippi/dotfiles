@@ -1,15 +1,12 @@
 [user]
 	name = SeanPhilippi
-	email = s.philippi@rsitex.com
+	email = sean.philippi@gmail.com
 [commit]
 	gpgsign = false
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
-# [user]
-#	name = Sean Philippi
-#	email = sean.philippi@gmail.com
 [push]
 	default = matching
 [help]
@@ -38,3 +35,10 @@
 	dump = cat-file -p
 [http]
 	postBuffer = 157286400
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/local/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/local/bin/gh auth git-credential
+
