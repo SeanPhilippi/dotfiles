@@ -154,9 +154,12 @@ export MUSIC_PATH=/home/kesto/Music
 export DOWNLOADS_PATH=/home/kesto/Downloads
 export TRANSMISSION_DWLDS_PATH=/home/kesto/Transmission-Downloads
 export TEST_PATH=/home/kesto/Test
+export EXTERNAL_MUSIC_PATH="/media/kesto/My Passport/MUSIC"
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export BROWSER=/usr/bin/brave-browser-beta
 
